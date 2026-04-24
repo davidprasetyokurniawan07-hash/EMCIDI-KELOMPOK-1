@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>emcidi – Promo Spesial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #e31837;
+      --yellow: #FFC72C;
+      --dark: #1a1a1a;
+      --card-bg: #fff;
+      --text: #1a1a1a;
+      --gray: #f5f5f5;
+      --muted: #888;
+      --radius: 18px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f9f6f1;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: var(--red);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(227,24,55,.25);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      letter-spacing: 2px;
+    }
+    .nav-logo span { color: #fff; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .5px;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--yellow); }
+    .nav-order {
+      background: var(--yellow);
+      color: var(--dark);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .nav-order:hover { background: #fff; transform: scale(1.04); }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      background: linear-gradient(120deg, #e31837 0%, #a01020 60%, #1a1a1a 100%);
+      padding: 60px 5% 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='28' stroke='rgba(255,255,255,.05)' stroke-width='2' fill='none'/%3E%3C/svg%3E") repeat;
+      opacity: .4;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero p {
+      color: rgba(255,255,255,.75);
+      font-size: 1rem;
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-weight: 900;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(255,199,44,.4);
+    }
+    .hero-cta:hover { background: #fff; transform: translateY(-2px); }
+    .hero-img {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .hero-img .burger-emoji {
+      font-size: clamp(6rem, 12vw, 10rem);
+      display: block;
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,.4));
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+
+    /* ── FILTER TABS ── */
+    .section { padding: 48px 5%; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+    }
+    .section-title span { color: var(--red); }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 9px 20px;
+      border-radius: 50px;
+      border: 2px solid #ddd;
+      background: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: all .2s;
+      color: var(--muted);
+    }
+    .tab-btn:hover { border-color: var(--red); color: var(--red); }
+    .tab-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    /* ── PROMO GRID ── */
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .promo-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .promo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.14);
+    }
+    .promo-card.hidden { display: none; }
+
+    /* ribbon */
+    .ribbon {
+      position: absolute;
+      top: 14px;
+      left: -4px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 900;
+      font-size: .72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px 5px 10px;
+      border-radius: 0 4px 4px 0;
+      z-index: 2;
+      box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+    }
+    .ribbon.yellow { background: var(--yellow); color: var(--dark); }
+    .ribbon.green  { background: #27ae60; }
+
+    .card-img-wrap {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 180px;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      right: -20px;
+      height: 40px;
+      background: var(--card-bg);
+      border-radius: 50%;
+    }
+    /* color variants */
+    .bg-red    { background: linear-gradient(135deg, #fff0f0, #ffd6d6); }
+    .bg-blue   { background: linear-gradient(135deg, #e8f4ff, #c5e3ff); }
+    .bg-green  { background: linear-gradient(135deg, #e8fff0, #c5ffd6); }
+    .bg-purple { background: linear-gradient(135deg, #f0e8ff, #d6c5ff); }
+
+    .card-body { padding: 22px 20px 18px; flex: 1; display: flex; flex-direction: column; }
+    .card-category {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    .card-desc {
+      font-size: .85rem;
+      color: #666;
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .price-old {
+      font-size: .78rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .price-new {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .price-new small {
+      font-family: 'Nunito', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .btn-pesan {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn-pesan:hover { background: #b5001c; transform: scale(1.04); }
+
+    /* timer badge */
+    .timer-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--red);
+      background: #fff0f3;
+      border-radius: 50px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .timer-badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner {
+      margin: 0 5% 48px;
+      background: linear-gradient(110deg, var(--yellow) 0%, #ffb300 100%);
+      border-radius: 20px;
+      padding: 32px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 8px 32px rgba(255,199,44,.35);
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-banner::before {
+      content: '★';
+      position: absolute;
+      right: 3%;
+      top: -10px;
+      font-size: 10rem;
+      color: rgba(255,255,255,.15);
+      font-family: sans-serif;
+    }
+    .featured-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .featured-text p {
+      font-size: .95rem;
+      color: rgba(0,0,0,.6);
+      margin-top: 6px;
+      max-width: 380px;
+    }
+    .btn-featured {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .btn-featured:hover { background: var(--red); transform: scale(1.04); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #fff;
+      border-radius: 22px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 24px 72px rgba(0,0,0,.22);
+      overflow: hidden;
+      transform: translateY(30px) scale(.97);
+      transition: transform .28s;
+    }
+    .modal-overlay.show .modal { transform: translateY(0) scale(1); }
+    .modal-header {
+      background: linear-gradient(135deg, #fff8e1, #ffeaa0);
+      padding: 32px 28px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .modal-emoji { font-size: 5rem; flex-shrink: 0; }
+    .modal-header-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      line-height: 1.1;
+    }
+    .modal-header-text p { font-size: .85rem; color: #666; margin-top: 4px; }
+    .modal-body { padding: 24px 28px; }
+    .modal-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: .9rem;
+    }
+    .modal-row:last-child { border: none; }
+    .modal-row strong { font-weight: 800; }
+    .modal-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--red);
+    }
+    .modal-footer {
+      padding: 0 28px 28px;
+      display: flex;
+      gap: 12px;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: 13px;
+      border-radius: 50px;
+      border: 2px solid #ddd;
+      background: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: #888;
+      cursor: pointer;
+      font-size: .9rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-cancel:hover { border-color: var(--red); color: var(--red); }
+    .btn-confirm {
+      flex: 2;
+      padding: 13px;
+      border-radius: 50px;
+      border: none;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-confirm:hover { background: #b5001c; transform: scale(1.02); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .9rem;
+      z-index: 300;
+      transition: transform .35s cubic-bezier(.175,.885,.32,1.275);
+      white-space: nowrap;
+      box-shadow: 0 6px 24px rgba(0,0,0,.3);
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── CART BUBBLE ── */
+    #cart-bubble {
+      position: fixed;
+      bottom: 32px;
+      right: 28px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .9rem;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(227,24,55,.45);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s, background .2s;
+      z-index: 100;
+      transform: scale(0);
+    }
+    #cart-bubble.show { transform: scale(1); }
+    #cart-bubble:hover { background: #b5001c; transform: scale(1.06); }
+    #cart-count {
+      background: var(--yellow);
+      color: var(--dark);
+      border-radius: 50%;
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 28px 5%;
+      font-size: .82rem;
+      margin-top: 20px;
+    }
+    footer strong { color: var(--yellow); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { flex-direction: column; text-align: center; padding: 48px 5% 36px; }
+      .hero p { margin: 0 auto 28px; }
+      .featured-banner { flex-direction: column; text-align: center; }
+      .featured-banner::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">em<span>cidi</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Menu</a></li>
+    <li><a href="#" class="active">Promo</a></li>
+    <li><a href="#">Restoran</a></li>
+    <li><a href="#">Tentang</a></li>
+  </ul>
+  <button class="nav-order" onclick="showToast('🛵 Pilih promo dulu yuk!')">Pesan Sekarang</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-badge">🔥 Promo Terbatas!</span>
+    <h1>Hemat Lebih Banyak,<br>Makan <span>Makin Enak</span></h1>
+    <p>Dapatkan penawaran eksklusif setiap hari. Diskon besar untuk burger, paket keluarga, dan banyak lagi!</p>
+    <a href="#promo" class="hero-cta">Lihat Semua Promo →</a>
+  </div>
+  <div class="hero-img">
+    <span class="burger-emoji">🍔</span>
+  </div>
+</section>
+
+<!-- FEATURED BANNER -->
+<div class="featured-banner">
+  <div class="featured-text">
+    <h2>Paket Keluarga Hemat — Mulai Rp 99.000!</h2>
+    <p>2 Burger + 2 Ayam + 4 Minuman + 2 Kentang. Cocok buat makan bareng keluarga di rumah.</p>
+  </div>
+  <button class="btn-featured" onclick="openModal({title:'Paket Keluarga Hemat',emoji:'🏠',desc:'2 Burger + 2 Ayam Goreng + 4 Minuman + 2 Kentang',price:'Rp 99.000',old:'Rp 145.000',cat:'Paket',valid:'30 Apr 2025'})">Ambil Promo</button>
+</div>
+
+<!-- PROMO SECTION -->
+<section class="section" id="promo">
+  <div class="section-header">
+    <h2 class="section-title">Promo <span>Pilihan</span></h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-filter="all">Semua</button>
+      <button class="tab-btn" data-filter="paket">Paket</button>
+      <button class="tab-btn" data-filter="burger">Burger</button>
+      <button class="tab-btn" data-filter="ayam">Ayam</button>
+      <button class="tab-btn" data-filter="minuman">Minuman</button>
+      <button class="tab-btn" data-filter="app">App Deal</button>
+    </div>
+  </div>
+
+  <div class="promo-grid" id="promo-grid">
+
+    <!-- Card 1 -->
+    <div class="promo-card" data-cat="burger">
+      <span class="ribbon">Terlaris</span>
+      <div class="card-img-wrap bg-red"><span>🍔</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Berlaku s/d 30 Apr 2025
+        </div>
+        <div class="card-category">Burger</div>
+        <div class="card-title">Double Smoky BBQ</div>
+        <div class="card-desc">Double patty beef juicy dengan saus BBQ asap, keju cheddar leleh & crispy onion.</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Rp 52.000</div>
+            <div class="price-new">Rp 35.000 <small>/pcs</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Double Smoky BBQ',emoji:'🍔',desc:'Double patty beef dengan saus BBQ & keju cheddar',price:'Rp 35.000',old:'Rp 52.000',cat:'Burger',valid:'30 Apr 2025'})">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="promo-card" data-cat="paket">
+      <span class="ribbon yellow">Hemat 40%</span>
+      <div class="card-img-wrap bg-blue"><span>🎁</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Berlaku s/d 25 Apr 2025
+        </div>
+        <div class="card-category">Paket</div>
+        <div class="card-title">Paket Duo Hemat</div>
+        <div class="card-desc">2 Burger pilihan + 2 Kentang Medium + 2 Minuman. Cocok buat makan berdua!</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Rp 115.000</div>
+            <div class="price-new">Rp 69.000 <small>/paket</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Paket Duo Hemat',emoji:'🎁',desc:'2 Burger + 2 Kentang Medium + 2 Minuman',price:'Rp 69.000',old:'Rp 115.000',cat:'Paket',valid:'25 Apr 2025'})">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="promo-card" data-cat="ayam">
+      <span class="ribbon green">Baru!</span>
+      <div class="card-img-wrap bg-green"><span>🍗</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Berlaku s/d 28 Apr 2025
+        </div>
+        <div class="card-category">Ayam</div>
+        <div class="card-title">Crispy Chicken Strips</div>
+        <div class="card-desc">6 potong ayam crispy gurih dengan pilihan saus: BBQ, Ranch, atau Pedas Manis.</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Rp 45.000</div>
+            <div class="price-new">Rp 29.000 <small>/porsi</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Crispy Chicken Strips',emoji:'🍗',desc:'6 pcs ayam crispy + saus pilihan',price:'Rp 29.000',old:'Rp 45.000',cat:'Ayam',valid:'28 Apr 2025'})">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="promo-card" data-cat="app">
+      <span class="ribbon">App Eksklusif</span>
+      <div class="card-img-wrap bg-purple"><span>📱</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Berlaku s/d 1 Mei 2025
+        </div>
+        <div class="card-category">App Deal</div>
+        <div class="card-title">Free Minuman via App</div>
+        <div class="card-desc">Pesan via aplikasi BurgerGo, gratis 1 minuman ukuran Large untuk setiap transaksi min. Rp 50.000.</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Nilai s/d Rp 20.000</div>
+            <div class="price-new">GRATIS <small>via app</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Free Minuman via App',emoji:'📱',desc:'Gratis 1 Minuman Large (min. transaksi Rp 50.000)',price:'GRATIS',old:'Hemat s/d Rp 20.000',cat:'App Deal',valid:'1 Mei 2025'})">Klaim</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="promo-card" data-cat="minuman">
+      <div class="card-img-wrap"><span>🧃</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Berlaku s/d 27 Apr 2025
+        </div>
+        <div class="card-category">Minuman</div>
+        <div class="card-title">Minuman Refill Gratis</div>
+        <div class="card-desc">Beli 1 minuman ukuran apapun, refill gratis sepuasnya selama makan di tempat.</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Rp 18.000</div>
+            <div class="price-new">Rp 12.000 <small>+refill</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Minuman Refill Gratis',emoji:'🧃',desc:'1 minuman pilihan + refill gratis dine-in',price:'Rp 12.000',old:'Rp 18.000',cat:'Minuman',valid:'27 Apr 2025'})">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="promo-card" data-cat="paket">
+      <span class="ribbon yellow">Promo Siang</span>
+      <div class="card-img-wrap bg-red"><span>☀️</span></div>
+      <div class="card-body">
+        <div class="timer-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          11.00 – 14.00 WIB
+        </div>
+        <div class="card-category">Paket</div>
+        <div class="card-title">Lunch Combo Spesial</div>
+        <div class="card-desc">1 Burger + 1 Ayam Crispy + 1 Minuman + 1 Kentang. Khusus jam makan siang!</div>
+        <div class="card-footer">
+          <div class="price-block">
+            <div class="price-old">Rp 80.000</div>
+            <div class="price-new">Rp 49.000 <small>/paket</small></div>
+          </div>
+          <button class="btn-pesan" onclick="openModal({title:'Lunch Combo Spesial',emoji:'☀️',desc:'Burger + Ayam + Minuman + Kentang (11–14 WIB)',price:'Rp 49.000',old:'Rp 80.000',cat:'Paket',valid:'Setiap Hari'})">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <span class="modal-emoji" id="m-emoji">🍔</span>
+      <div class="modal-header-text">
+        <h2 id="m-title">–</h2>
+        <p id="m-desc">–</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-row"><span>Kategori</span><strong id="m-cat">–</strong></div>
+      <div class="modal-row"><span>Berlaku s/d</span><strong id="m-valid">–</strong></div>
+      <div class="modal-row"><span>Harga Normal</span><strong id="m-old" style="text-decoration:line-through;color:#aaa;">–</strong></div>
+      <div class="modal-row"><span>Harga Promo</span><span class="modal-price" id="m-price">–</span></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Batal</button>
+      <button class="btn-confirm" onclick="addToCart()">🛒 Tambah ke Pesanan</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">✓ Berhasil ditambahkan!</div>
+
+<!-- CART BUBBLE -->
+<button id="cart-bubble" onclick="showToast('🛒 Checkout segera tersedia!')">
+  🛒 Keranjang
+  <span id="cart-count">0</span>
+</button>
+
+<!-- FOOTER -->
+<footer>
+  <strong>emcidi</strong> &nbsp;·&nbsp; Promo berlaku sesuai syarat & ketentuan yang tertera.<br>
+  © 2025 emcidi Indonesia. Semua hak dilindungi.
+</footer>
+
+<script>
+  // ── Filter Tabs ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.promo-card').forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
+      });
+    });
+  });
+
+  // ── Modal ──
+  let currentPromo = {};
+  function openModal(data) {
+    currentPromo = data;
+    document.getElementById('m-emoji').textContent  = data.emoji;
+    document.getElementById('m-title').textContent  = data.title;
+    document.getElementById('m-desc').textContent   = data.desc;
+    document.getElementById('m-cat').textContent    = data.cat;
+    document.getElementById('m-valid').textContent  = data.valid;
+    document.getElementById('m-old').textContent    = data.old;
+    document.getElementById('m-price').textContent  = data.price;
+    document.getElementById('modal-overlay').classList.add('show');
+  }
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modal-overlay')) {
+      document.getElementById('modal-overlay').classList.remove('show');
+    }
+  }
+
+  // ── Cart ──
+  let cartCount = 0;
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cart-count').textContent = cartCount;
+    document.getElementById('cart-bubble').classList.add('show');
+    closeModal();
+    showToast('✅ ' + currentPromo.title + ' ditambahkan!');
+  }
+
+  // ── Toast ──
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── Smooth scroll ──
+  document.querySelector('.hero-cta').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('promo').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
